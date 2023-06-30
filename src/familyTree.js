@@ -40,6 +40,21 @@ export const addMember = (member, familyId, familyRole) => {
   }
 };
 
+export const addSpouse = (spouse, memberId) => {
+  const member = familyTree.findIndex((member) => member.id === memberId);
+  if (member === -1 || familyTree[member].parentOf !== '') {
+    return false;
+  }
+
+  const familyId = crypto.randomUUID();
+  if (addMember(spouse, familyId, relation.parent)) {
+    familyTree[member].parentOf = familyId;
+    return true;
+  }
+
+  return false;
+};
+
 export const printFamilyTree = () => {
   familyTree.forEach((member) => {
     if (member.childOf != '') {
