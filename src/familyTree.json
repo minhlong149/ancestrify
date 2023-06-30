@@ -24,6 +24,27 @@
     "id": "b56a3658-0efe-4af4-8529-c94e3c971f65",
     "name": "Nhi Sistest",
     "birthday": "1995-01-01",
+    "parentOf": "F2",
+    "childOf": "F1"
+  },
+  {
+    "id": "92647541-d363-4e4a-9018-f91e572fdda1",
+    "name": "Phong Anhdre",
+    "birthday": "1995-01-01",
+    "parentOf": "F2",
+    "childOf": ""
+  },
+  {
+    "id": "ecf476a4-38d6-4aa7-b958-a7cea47f96f0",
+    "name": "Bao Chaus",
+    "birthday": "1995-01-01",
+    "parentOf": "",
+    "childOf": "F2"
+  },
+  {
+    "id": "6a23b6a7-07c0-43b0-9be2-363c15c4b355",
+    "name": "Phuc Sisty",
+    "birthday": "1995-01-01",
     "parentOf": "",
     "childOf": "F1"
   }

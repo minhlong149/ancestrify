@@ -41,14 +41,29 @@ export const addMember = (member, familyId, familyRole) => {
 };
 
 export const addSpouse = (spouse, memberId) => {
-  const member = familyTree.findIndex((member) => member.id === memberId);
-  if (member === -1 || familyTree[member].parentOf !== '') {
+  const memberIndex = getMemberIndex(memberId);
+  if (memberIndex === -1 || familyTree[memberIndex].parentOf !== '') {
     return false;
   }
 
   const familyId = crypto.randomUUID();
   if (addMember(spouse, familyId, relation.parent)) {
-    familyTree[member].parentOf = familyId;
+    familyTree[memberIndex].parentOf = familyId;
+    return true;
+  }
+
+  return false;
+};
+
+export const addChild = (child, memberId) => {
+  const memberIndex = getMemberIndex(memberId);
+  if (memberIndex === -1) {
+    return false;
+  }
+
+  const familyId = familyTree[memberIndex].parentOf || crypto.randomUUID();
+  if (addMember(child, familyId, relation.child)) {
+    familyTree[memberIndex].parentOf = familyId;
     return true;
   }
 
@@ -84,3 +99,5 @@ export const printFamilyTree = () => {
 const parentsOfFamily = (family) => familyTree.filter((member) => member.parentOf === family);
 
 const childrenOfFamily = (family) => familyTree.filter((member) => member.childOf === family);
+
+const getMemberIndex = (memberId) => familyTree.findIndex((member) => member.id === memberId);
