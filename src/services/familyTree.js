@@ -12,6 +12,14 @@ export default class FamilyTree {
 
   static MAX_SPOUSE = 2;
 
+  getMembers() {
+    let members = [];
+    this.members.forEach((member) => {
+      members.push(member);
+    });
+    return members;
+  }
+
   addFirstMember(member) {
     return this.members.length > 0
       ? false

@@ -1,15 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import FTMS from '../services/familyTree.js';
 
 export function FamilyTree({ familyTreeJson }) {
   const familyTree = new FTMS(familyTreeJson);
-  const members = familyTree.traverse((member) => member);
+  const [members, setMembers] = useState(familyTree.getMembers());
+
+  const removeMember = (memberId) => {
+    familyTree.removeMember(memberId);
+    setMembers(familyTree.getMembers());
+  };
+
   return (
     <ul>
       {members.map((member) => (
         <li key={member.id}>
           <Member member={member} />
+          <button onClick={() => removeMember(member.id)}>Remove</button>
           <ul>
             {member.childOf && (
               <li>
@@ -144,7 +151,6 @@ function Children({ children }) {
 }
 
 const stringToColour = (string) => {
-  // hash string to a random number
   const hue = string.split('').reduce((acc, char, i) => {
     acc = (acc << i) - acc + char.charCodeAt(0);
     return acc & acc;
