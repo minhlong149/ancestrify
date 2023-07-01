@@ -1,5 +1,18 @@
+import React, { useState } from 'react';
+
+import { Editor } from './components/Editor.jsx';
+import { FamilyTree } from './components/FamilyTree.jsx';
+
+import familyTreeJson from './familyTree.json';
+
 function App() {
-  return <h1>Hello, world!</h1>;
+  const [json, setJson] = useState(familyTreeJson);
+  return (
+    <>
+      <Editor value={json} setValue={setJson} />
+      <FamilyTree familyTreeJson={json} />
+    </>
+  );
 }
 
 export default App;
