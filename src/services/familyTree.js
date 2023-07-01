@@ -134,6 +134,40 @@ export default class FamilyTree {
     }
   }
 
+  removeMember(memberId) {
+    const memberIndex = this.getMemberIndex(memberId);
+
+    const children = this.childrenOfFamily(this.members[memberIndex].parentOf);
+
+    const parents = this.parentsOfFamily(this.members[memberIndex].childOf);
+
+    const spouses = this.parentsOfFamily(this.members[memberIndex].parentOf).filter(
+      (spouse) => spouse.id !== memberId,
+    );
+
+    const siblings = this.childrenOfFamily(this.members[memberIndex].childOf).filter(
+      (sibling) => sibling.id !== memberId,
+    );
+
+    if (parents.length === 0 && siblings.length === 1) {
+      siblings[0].childOf = '';
+    }
+
+    if (children.length === 0 && spouses.length === 1) {
+      spouses[0].parentOf = '';
+    }
+
+    if (spouses.length === 0 && children.length === 1) {
+      children[0].childOf = '';
+    }
+
+    if (siblings.length === 0 && parents.length === 1) {
+      parents[0].parentOf = '';
+    }
+
+    this.members.splice(memberIndex, 1);
+  }
+
   traverseMember(member, results, callbackFn) {
     results.push(callbackFn(member));
 
