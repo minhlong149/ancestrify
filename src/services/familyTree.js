@@ -32,7 +32,6 @@ export default class FamilyTree {
           parentOf: familyId,
           childOf: '',
         });
-        console.log(member.name, 'added');
         return true;
 
       case FamilyTree.relation.child:
@@ -43,7 +42,6 @@ export default class FamilyTree {
           parentOf: '',
           childOf: familyId,
         });
-        console.log(member.name, 'added');
         return true;
 
       default:
@@ -55,11 +53,6 @@ export default class FamilyTree {
     const childIndex = this.getMemberIndex(childId);
     const childFamilyId = this.members[childIndex].childOf;
     if (childIndex === -1 || this.parentsOfFamily(childFamilyId).length >= FamilyTree.MAX_SPOUSE) {
-      console.log(
-        this.members[childIndex].name,
-        ' cannot add parent, ',
-        this.parentsOfFamily(childFamilyId).length,
-      );
       return false;
     }
 
@@ -68,8 +61,6 @@ export default class FamilyTree {
       this.members[childIndex].childOf = familyId;
       return true;
     }
-    console.log(this.members[childIndex].name, ' cannot add parent');
-
     return false;
   }
 
@@ -143,6 +134,40 @@ export default class FamilyTree {
         );
       }
     });
+  }
+
+  traverse(callbackFn) {
+    let results = [];
+    for (const member of this.members) {
+      if (member.childOf === '') {
+        this.traverseMember(member, results, callbackFn);
+        return results;
+      }
+    }
+  }
+
+  traverseMember(member, results, callbackFn) {
+    results.push(callbackFn(member));
+
+    const spouses = this.parentsOfFamily(member.parentOf).filter(
+      (spouse) => spouse.id !== member.id,
+    );
+    spouses.forEach((spouse) => this.traverseSpouse(spouse, results, callbackFn));
+
+    const children = this.childrenOfFamily(member.parentOf);
+    children.forEach((child) => this.traverseMember(child, results, callbackFn));
+  }
+
+  traverseSpouse(member, results, callbackFn) {
+    results.push(callbackFn(member));
+
+    const parents = this.parentsOfFamily(member.childOf);
+    parents.forEach((parent) => this.traverseSpouse(parent, results, callbackFn));
+
+    const siblings = this.childrenOfFamily(member.childOf).filter(
+      (sibling) => sibling.id !== member.id,
+    );
+    siblings.forEach((sibling) => this.traverseMember(sibling, results, callbackFn));
   }
 
   parentsOfFamily(familyId) {
