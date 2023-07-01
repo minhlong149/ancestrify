@@ -37,15 +37,58 @@ export function FamilyTree({ familyTreeJson }) {
 }
 
 function Member({ member }) {
+  const filter = [`span[mid="${member.id}"]`];
+
+  if (member.parentOf) {
+    filter.push(`span[pfid="${member.parentOf}"]`);
+    // filter.push(`span[cfid="${member.parentOf}"]`);
+  }
+
+  if (member.childOf) {
+    // filter.push(`span[pfid="${member.childOf}"]`);
+    // filter.push(`span[cfid="${member.childOf}"]`);
+  }
+
+  const spans = document.querySelectorAll(filter.join(','));
+
+  const highlightOn = () =>
+    spans.forEach((span) => {
+      const randomColor = stringToColour(span.getAttribute('mid'));
+      span.style.backgroundColor = randomColor;
+    });
+
+  const highlightOff = () => spans.forEach(({ style }) => (style.backgroundColor = 'transparent'));
+
   return (
-    <span id={member.id} parentOf={member.parentOf} childOf={member.childOf}>
+    <span
+      mid={member.id}
+      pfid={member.parentOf}
+      cfid={member.childOf}
+      onMouseEnter={highlightOn}
+      onMouseLeave={highlightOff}
+    >
       {member.name}, {member.birthday.substring(0, 4)}{' '}
     </span>
   );
 }
 
 function Family({ familyId }) {
-  return <span id={familyId}>{familyId}</span>;
+  const filter = [`span[fid="${familyId}"]`];
+  const spans = document.querySelectorAll(filter.join(','));
+
+  const highlightOn = () =>
+    spans.forEach((span) => {
+      const randomColor = stringToColour(span.getAttribute('fid'));
+      span.style.backgroundColor = randomColor;
+    });
+
+  const highlightOff = () => spans.forEach(({ style }) => (style.backgroundColor = 'transparent'));
+
+  return (
+    <span fid={familyId} onMouseEnter={highlightOn} onMouseLeave={highlightOff}>
+      {familyId}
+    </span>
+  );
 }
 
 function Parents({ parents }) {
@@ -99,3 +142,13 @@ function Children({ children }) {
     <></>
   );
 }
+
+const stringToColour = (string) => {
+  // hash string to a random number
+  const hue = string.split('').reduce((acc, char, i) => {
+    acc = (acc << i) - acc + char.charCodeAt(0);
+    return acc & acc;
+  }, string.length);
+
+  return `hsl(${hue % 360}, 100%, 90%)`;
+};
