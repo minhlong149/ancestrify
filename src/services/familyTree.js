@@ -108,32 +108,20 @@ export default class FamilyTree {
     return false;
   }
 
-  print() {
-    this.members.forEach((member) => {
-      if (member.childOf != '') {
-        const parents = this.parentsOfFamily(member.childOf);
-        const siblings = this.childrenOfFamily(member.childOf).filter(
-          (sibling) => sibling.id !== member.id,
-        );
-        console.log(
-          `${member.name} is child of family ${member.childOf}, their parents are ${parents
-            .map((parent) => parent.name)
-            .join(', ')}, their siblings are ${siblings.map((sibling) => sibling.name).join(', ')}`,
-        );
-      }
+  parentsOfMember(member) {
+    return this.parentsOfFamily(member.childOf);
+  }
 
-      if (member.parentOf != '') {
-        const spouses = this.parentsOfFamily(member.parentOf).filter(
-          (spouse) => spouse.id !== member.id,
-        );
-        const children = this.childrenOfFamily(member.parentOf);
-        console.log(
-          `${member.name} is parent of family ${member.parentOf}, their spouses are ${spouses
-            .map((spouse) => spouse.name)
-            .join(', ')}, their children are ${children.map((child) => child.name).join(', ')}`,
-        );
-      }
-    });
+  siblingsOfMember(member) {
+    return this.childrenOfFamily(member.childOf).filter((sibling) => sibling.id !== member.id);
+  }
+
+  spousesOfMember(member) {
+    return this.parentsOfFamily(member.parentOf).filter((spouse) => spouse.id !== member.id);
+  }
+
+  childrenOfMember(member) {
+    return this.childrenOfFamily(member.parentOf);
   }
 
   traverse(callbackFn) {
