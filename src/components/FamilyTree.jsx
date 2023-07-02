@@ -1,5 +1,4 @@
-import React, { useEffect, useLayoutEffect, useState
-} from 'react';
+import React, { useEffect, useLayoutEffect, useState } from 'react';
 
 import FTMS from '../services/familyTree.js';
 
@@ -62,15 +61,18 @@ function Member({ member }) {
     // filter.push(`span[cfid="${member.childOf}"]`);
   }
 
+  const highlightOn = () => {
     const spans = document.querySelectorAll(filter.join(','));
-
-  const highlightOn = () =>
     spans.forEach((span) => {
       const randomColor = stringToColour(span.getAttribute('mid'));
       span.style.backgroundColor = randomColor;
     });
+  };
 
-  const highlightOff = () => spans.forEach(({ style }) => (style.backgroundColor = 'transparent'));
+  const highlightOff = () => {
+    const spans = document.querySelectorAll(filter.join(','));
+    spans.forEach(({ style }) => (style.backgroundColor = 'transparent'));
+  };
 
   return (
     <span
@@ -87,15 +89,19 @@ function Member({ member }) {
 
 function Family({ familyId }) {
   const filter = [`span[fid="${familyId}"]`];
-  const spans = document.querySelectorAll(filter.join(','));
 
-  const highlightOn = () =>
+  const highlightOn = () => {
+    const spans = document.querySelectorAll(filter.join(','));
     spans.forEach((span) => {
       const randomColor = stringToColour(span.getAttribute('fid'));
       span.style.backgroundColor = randomColor;
     });
+  };
 
-  const highlightOff = () => spans.forEach(({ style }) => (style.backgroundColor = 'transparent'));
+  const highlightOff = () => {
+    const spans = document.querySelectorAll(filter.join(','));
+    spans.forEach(({ style }) => (style.backgroundColor = 'transparent'));
+  };
 
   return (
     <span fid={familyId} onMouseEnter={highlightOn} onMouseLeave={highlightOff}>
