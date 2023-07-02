@@ -10,7 +10,7 @@ function App() {
   return (
     <>
       <Editor value={json} setValue={setJson} />
-      <FamilyTree familyTreeJson={json} />
+      <FamilyTree familyTreeJson={json} updateEditor={setJson} />
     </>
   );
 }

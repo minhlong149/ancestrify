@@ -15,7 +15,15 @@ export default class FamilyTree {
   getMembers() {
     let members = [];
     this.members.forEach((member) => {
-      members.push(member);
+      if (member.id && member.name) {
+        members.push({
+          id: member.id,
+          name: member.name,
+          birthday: member.birthday,
+          parentOf: member.parentOf || '',
+          childOf: member.childOf || '',
+        });
+      }
     });
     return members;
   }

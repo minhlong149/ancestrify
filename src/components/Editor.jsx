@@ -18,6 +18,6 @@ export function Editor({ value = [], setValue }) {
     });
     jsonEditor.set(value);
     return () => jsonEditor.destroy();
-  }, []);
+  }, [value]);
   return <div ref={editorRef} />;
 }

@@ -1,14 +1,20 @@
-import React, { useState } from 'react';
+import React, { useEffect, useLayoutEffect, useState
+} from 'react';
 
 import FTMS from '../services/familyTree.js';
 
-export function FamilyTree({ familyTreeJson }) {
+export function FamilyTree({ familyTreeJson, updateEditor }) {
   const familyTree = new FTMS(familyTreeJson);
-  const [members, setMembers] = useState(familyTree.getMembers());
+  const [members, setMembers] = useState([]);
+
+  useEffect(() => {
+    setMembers(familyTree.getMembers());
+  }, [familyTreeJson]);
 
   const removeMember = (memberId) => {
     familyTree.removeMember(memberId);
     setMembers(familyTree.getMembers());
+    updateEditor(familyTree.getMembers());
   };
 
   return (
@@ -56,7 +62,7 @@ function Member({ member }) {
     // filter.push(`span[cfid="${member.childOf}"]`);
   }
 
-  const spans = document.querySelectorAll(filter.join(','));
+    const spans = document.querySelectorAll(filter.join(','));
 
   const highlightOn = () =>
     spans.forEach((span) => {
