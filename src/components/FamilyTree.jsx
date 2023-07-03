@@ -42,8 +42,9 @@ export function FamilyTree({ familyTreeJson, updateEditor }) {
     if (members.length === 0) {
       if (familyTree.addFirstMember(member)) {
         syncJsonEditor();
+        inputForm.name.value = '';
+        return;
       }
-      return;
     }
 
     const memberIdRelatedWith = inputForm.member.value;
@@ -75,6 +76,8 @@ export function FamilyTree({ familyTreeJson, updateEditor }) {
       default:
         break;
     }
+
+    inputForm.name.value = '';
   };
 
   return (
