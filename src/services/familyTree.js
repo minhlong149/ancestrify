@@ -96,11 +96,12 @@ export default class FamilyTree {
 
   addSpouse(spouse, memberId) {
     const memberIndex = this.getMemberIndex(memberId);
-    if (memberIndex === -1 || this.members[memberIndex].parentOf !== '') {
+    const memberFamilyId = this.members[memberIndex].parentOf;
+    if (memberIndex === -1 || this.parentsOfFamily(memberFamilyId) >= FamilyTree.MAX_SPOUSE) {
       return false;
     }
 
-    const familyId = uuidv4();
+    const familyId = this.members[memberIndex].parentOf || uuidv4();
     if (this.#addMember(spouse, familyId, FamilyTree.relation.parent)) {
       this.members[memberIndex].parentOf = familyId;
       return true;
@@ -111,7 +112,7 @@ export default class FamilyTree {
 
   addSibling(sibling, memberId) {
     const memberIndex = this.getMemberIndex(memberId);
-    if (memberIndex === -1 || this.members[memberIndex].childOf === '') {
+    if (memberIndex === -1) {
       return false;
     }
 
