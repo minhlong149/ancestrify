@@ -1,0 +1,12 @@
+@media (min-width: 1080px) {
+  .App {
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+    gap: 1rem;
+    height: 100vh;
+  }
+}
+
+.App > * {
+  overflow-y: auto;
+}

@@ -1,10 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
 
+import { FamilyDiagram } from './FamilyDiagram.jsx';
 import { InputForm } from './InputForm.jsx';
 import { MemberList } from './MemberList.jsx';
 
 import FTMS from '../services/familyTree.js';
-import { FamilyDiagram } from './FamilyDiagram.jsx';
+import './FamilyTree.css';
 
 export function FamilyTree({ familyTreeJson, updateEditor }) {
   const inputFormRef = useRef(null);
@@ -85,17 +86,20 @@ export function FamilyTree({ familyTreeJson, updateEditor }) {
   };
 
   return (
-    <div>
+    <div className='family-tree'>
       <FamilyDiagram
         members={members}
         familyTree={familyTree}
         updateInputForm={updateInputForm}
         removeMember={removeMember}
       />
-      
-      <form ref={inputFormRef} onSubmit={addMember}>
-        <InputForm members={members} />
-      </form>
+
+      <div className='input-form-container'>
+        <h2>Add a new member</h2>
+        <form ref={inputFormRef} onSubmit={addMember} className='input-form'>
+          <InputForm members={members} />
+        </form>
+      </div>
 
       <MemberList
         members={members}
