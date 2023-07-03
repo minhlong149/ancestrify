@@ -49,6 +49,19 @@
   padding-top: 1rem;
 }
 
+.grandparent-a:not(:empty),
+.grandparent-b:not(:empty) {
+  border-bottom: 1px dashed #333;
+  padding-bottom: 1rem;
+  justify-self: stretch;
+}
+
+.grandparent-a > span,
+.grandparent-b > span {
+  /* make span center */
+  margin: 0 auto;
+}
+
 .grandparent-a {
   grid-area: grandA;
 }

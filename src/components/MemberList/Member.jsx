@@ -3,10 +3,11 @@ import React from 'react';
 import { stringToColour } from '../../services/helper.js';
 
 export function Member({ member }) {
+  if (!member) return null;
   const filter = [`span[mid="${member.id}"]`];
 
   if (member.parentOf) {
-    filter.push(`span[pfid="${member.parentOf}"]`);
+    // filter.push(`span[pfid="${member.parentOf}"]`);
     // filter.push(`span[cfid="${member.parentOf}"]`);
   }
 

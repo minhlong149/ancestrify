@@ -50,16 +50,16 @@ export function FamilyDiagram({ members, familyTree }) {
                   <Member member={relative.member} />
                 </div>
 
-                {relative.spouse && (
+                {relative.spouses.length > 0 && (
                   <div className='sibling-spouse'>
-                    {relative.spouse.map((spouse) => (
+                    {relative.spouses.map((spouse) => (
                       <Member member={spouse} key={spouse.id} />
                     ))}
                   </div>
                 )}
               </div>
 
-              {relative.children && (
+              {relative.children.length > 0 && (
                 <div className='sibling-children'>
                   {relative.children.map((child) => (
                     <Member member={child} key={child.id} />
@@ -83,20 +83,22 @@ export function FamilyDiagram({ members, familyTree }) {
                   <Member member={relative.member} />
                 </div>
 
-                {relative.spouse && (
+                {relative.spouses.length > 0 && (
                   <div className='sibling-spouse'>
-                    {relative.spouse.map((spouse) => (
+                    {relative.spouses.map((spouse) => (
                       <Member member={spouse} key={spouse.id} />
                     ))}
                   </div>
                 )}
               </div>
 
-              <div className='sibling-children'>
-                {relative.children?.map((child) => (
-                  <Member member={child} key={child.id} />
-                ))}
-              </div>
+              {relative.children.length > 0 && (
+                <div className='sibling-children'>
+                  {relative.children.map((child) => (
+                    <Member member={child} key={child.id} />
+                  ))}
+                </div>
+              )}
             </div>
           ))}
         </div>
