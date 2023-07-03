@@ -4,6 +4,7 @@ import { InputForm } from './InputForm.jsx';
 import { MemberList } from './MemberList.jsx';
 
 import FTMS from '../services/familyTree.js';
+import { FamilyDiagram } from './FamilyDiagram.jsx';
 
 export function FamilyTree({ familyTreeJson, updateEditor }) {
   const inputFormRef = useRef(null);
@@ -85,9 +86,17 @@ export function FamilyTree({ familyTreeJson, updateEditor }) {
 
   return (
     <div>
+      <FamilyDiagram
+        members={members}
+        familyTree={familyTree}
+        updateInputForm={updateInputForm}
+        removeMember={removeMember}
+      />
+      
       <form ref={inputFormRef} onSubmit={addMember}>
         <InputForm members={members} />
       </form>
+
       <MemberList
         members={members}
         familyTree={familyTree}

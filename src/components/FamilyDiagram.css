@@ -1,0 +1,73 @@
+.container {
+  display: grid;
+  grid-template: auto / repeat(4, auto);
+  grid-template-areas:
+    'grandA grandA grandB grandB'
+    'siblingA parentA parentB siblingB'
+    'siblingA child child siblingB';
+  justify-content: center;
+  justify-items: center;
+  align-items: start;
+  gap: 1rem;
+}
+
+.container > div,
+.sibling-container,
+.sibling-parents {
+  display: flex;
+  gap: 1rem;
+}
+
+.container span,
+.parents {
+  display: block;
+  border: 1px solid #000;
+  padding: 1rem;
+}
+
+.parents {
+  border: 1px dashed #333;
+  padding: 1rem;
+}
+
+.sibling-container {
+  border: 1px dashed #aaa;
+  padding: 1rem;
+}
+
+.sibling-container {
+  flex-direction: column;
+  align-items: center;
+}
+
+.sibling-spouse span {
+  border-style: dashed;
+}
+
+.grandparent-a {
+  grid-area: grandA;
+}
+
+.grandparent-b {
+  grid-area: grandB;
+}
+
+.sibling-a {
+  grid-area: siblingA;
+}
+
+.sibling-b {
+  grid-area: siblingB;
+}
+
+.parent-a {
+  grid-area: parentA;
+}
+
+.parent-b {
+  grid-area: parentB;
+}
+
+.child {
+  grid-area: child;
+}

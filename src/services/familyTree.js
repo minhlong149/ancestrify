@@ -185,6 +185,44 @@ export default class FamilyTree {
     this.members.splice(memberIndex, 1);
   }
 
+  getFamilyOfMember(memberId) {
+    const memberIndex = this.getMemberIndex(memberId);
+
+    if (memberIndex === -1) {
+      return false;
+    }
+
+    const parents =
+      this.members[memberIndex].parentOf === ''
+        ? [this.members[memberIndex]]
+        : this.parentsOfFamily(this.members[memberIndex].parentOf);
+
+    const children = this.childrenOfFamily(this.members[memberIndex].parentOf);
+
+    const grandparents = parents.map((parent) => this.parentsOfFamily(parent.childOf));
+    const relatives = parents.map((parent) => {
+      const siblings = this.childrenOfFamily(parent.childOf).filter(
+        (sibling) => sibling.id !== parent.id,
+      );
+      return siblings.map((sibling) => {
+        return {
+          member: sibling,
+          spouses: this.parentsOfFamily(sibling.parentOf).filter(
+            (spouse) => spouse.id !== sibling.id,
+          ),
+          children: this.childrenOfFamily(sibling.parentOf),
+        };
+      });
+    });
+
+    return {
+      grandparents,
+      parents,
+      children,
+      relatives,
+    };
+  }
+
   traverseMember(member, results, callbackFn) {
     results.push(callbackFn(member));
 
