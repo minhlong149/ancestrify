@@ -1,51 +1,93 @@
 [
   {
-    "id": "9627afc9-e0e9-4752-b0c0-22b56c6c9244",
-    "name": "Minh Long",
-    "birthday": "2005-01-01",
-    "parentOf": "",
-    "childOf": "F1"
+    "id": "0f73fb2b-ce0c-491c-9994-e9442be5802c",
+    "name": "Father",
+    "birthday": "",
+    "parentOf": "bfa0fa36-8df0-486f-b30f-828d586a613f",
+    "childOf": "cb40e59c-2cc3-4792-85b0-38f3c56ed7c2"
   },
   {
-    "id": "2fe16d44-4b04-4120-bea3-e618b31919a8",
-    "name": "Hanh Fatherent",
-    "birthday": "1965-01-01",
-    "parentOf": "F1",
+    "id": "6ec8ee7b-9522-4bb5-a4db-74b88439bea4",
+    "name": "Mother",
+    "birthday": "",
+    "parentOf": "bfa0fa36-8df0-486f-b30f-828d586a613f",
+    "childOf": "6636cbab-59ff-45c1-b47f-a11d6c8082fe"
+  },
+  {
+    "id": "06190385-6419-4938-b725-d9aaf31abbdc",
+    "name": "Brother",
+    "birthday": "",
+    "parentOf": "",
+    "childOf": "bfa0fa36-8df0-486f-b30f-828d586a613f"
+  },
+  {
+    "id": "4f0e883c-af9f-4547-984a-de734f4a8ff9",
+    "name": "Sister",
+    "birthday": "",
+    "parentOf": "",
+    "childOf": "bfa0fa36-8df0-486f-b30f-828d586a613f"
+  },
+  {
+    "id": "6046098b-dddb-4114-8616-07286e601308",
+    "name": "Grandparent",
+    "birthday": "",
+    "parentOf": "cb40e59c-2cc3-4792-85b0-38f3c56ed7c2",
     "childOf": ""
   },
   {
-    "id": "9913c9e3-8581-472f-b217-abc4fea53238",
-    "name": "Ha Motherse",
-    "birthday": "1965-01-01",
-    "parentOf": "F1",
+    "id": "684e0f63-0f16-4c36-98b1-88a21c3e904e",
+    "name": "Aunt",
+    "birthday": "",
+    "parentOf": "ce2e7470-34b4-4978-a6dc-d43c7ef33504",
+    "childOf": "cb40e59c-2cc3-4792-85b0-38f3c56ed7c2"
+  },
+  {
+    "id": "f9e12c82-29bd-4e4a-844a-f94a0285eb5c",
+    "name": "Uncle",
+    "birthday": "",
+    "parentOf": "ce2e7470-34b4-4978-a6dc-d43c7ef33504",
     "childOf": ""
   },
   {
-    "id": "b56a3658-0efe-4af4-8529-c94e3c971f65",
-    "name": "Nhi Sistest",
-    "birthday": "1995-01-01",
-    "parentOf": "F2",
-    "childOf": "F1"
+    "id": "84805dd7-4208-4499-a9fe-fb7c2927daa2",
+    "name": "Niece",
+    "birthday": "",
+    "parentOf": "",
+    "childOf": "ce2e7470-34b4-4978-a6dc-d43c7ef33504"
   },
   {
-    "id": "92647541-d363-4e4a-9018-f91e572fdda1",
-    "name": "Phong Anhdre",
-    "birthday": "1995-01-01",
-    "parentOf": "F2",
+    "id": "f63b731a-cb51-4fd5-944d-30c1272e6af2",
+    "name": "Nephew",
+    "birthday": "",
+    "parentOf": "",
+    "childOf": "ce2e7470-34b4-4978-a6dc-d43c7ef33504"
+  },
+  {
+    "id": "702bfd91-60e3-483d-b635-5902d011f295",
+    "name": "Mothers-in-law",
+    "birthday": "",
+    "parentOf": "6636cbab-59ff-45c1-b47f-a11d6c8082fe",
     "childOf": ""
   },
   {
-    "id": "ecf476a4-38d6-4aa7-b958-a7cea47f96f0",
-    "name": "Bao Chaus",
-    "birthday": "1995-01-01",
-    "parentOf": "",
-    "childOf": "F2"
+    "id": "6edfe958-a4c4-47b7-86d5-56fadba51437",
+    "name": "Fathers-in-law",
+    "birthday": "",
+    "parentOf": "6636cbab-59ff-45c1-b47f-a11d6c8082fe",
+    "childOf": ""
   },
   {
-    "id": "6a23b6a7-07c0-43b0-9be2-363c15c4b355",
-    "name": "Phuc Sisty",
-    "birthday": "1995-01-01",
+    "id": "94c78444-31d4-4aea-9fa4-c600d458f1c1",
+    "name": "Sibling-in-law",
+    "birthday": "",
+    "parentOf": "3329893b-c249-42c5-ab29-8f3405e19677",
+    "childOf": "6636cbab-59ff-45c1-b47f-a11d6c8082fe"
+  },
+  {
+    "id": "21db6012-9cef-4c97-8e13-3326a0140745",
+    "name": "Child-in-law",
+    "birthday": "",
     "parentOf": "",
-    "childOf": "F1"
+    "childOf": "3329893b-c249-42c5-ab29-8f3405e19677"
   }
 ]
