@@ -3,7 +3,7 @@
   grid-template: auto / repeat(4, auto);
   grid-template-areas:
     'grandA grandA grandB grandB'
-    'siblingA parentA parentB siblingB'
+    'siblingA parent parent siblingB'
     'siblingA child child siblingB';
   justify-content: center;
   justify-items: center;
@@ -13,13 +13,13 @@
 
 .container > div,
 .sibling-container,
-.sibling-parents {
+.sibling-parents,
+.sibling-children {
   display: flex;
   gap: 1rem;
 }
 
-.container span,
-.parents {
+.container span {
   display: block;
   border: 1px solid #000;
   padding: 1rem;
@@ -30,9 +30,9 @@
   padding: 1rem;
 }
 
-.sibling-container {
-  border: 1px dashed #aaa;
-  padding: 1rem;
+.sibling-a,
+.sibling-b {
+  padding-top: 1rem;
 }
 
 .sibling-container {
@@ -42,6 +42,11 @@
 
 .sibling-spouse span {
   border-style: dashed;
+}
+
+.sibling-children:not(:empty) {
+  border-top: 1px dashed #333;
+  padding-top: 1rem;
 }
 
 .grandparent-a {
@@ -68,6 +73,16 @@
   grid-area: parentB;
 }
 
+.parents {
+  grid-area: parent;
+}
+
 .child {
   grid-area: child;
+}
+
+.family-diagram {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }

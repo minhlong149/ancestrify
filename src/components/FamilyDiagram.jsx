@@ -17,9 +17,9 @@ export function FamilyDiagram({ members, familyTree }) {
   if (!family) return null;
 
   return (
-    <div>
-      <div>
-        <label>Choose a family member:</label>
+    <div className='family-diagram'>
+      <div className='member-selection'>
+        <label>Choose a family member: </label>
         <select onChange={(e) => setMemberId(e.target.value)}>
           {members.map((member, index) => (
             <option key={member.id} value={member.id}>
@@ -28,6 +28,7 @@ export function FamilyDiagram({ members, familyTree }) {
           ))}
         </select>
       </div>
+
       <div className='container'>
         <div className='grandparent-a'>
           {family?.grandparents[0]?.map((member) => (
@@ -45,51 +46,57 @@ export function FamilyDiagram({ members, familyTree }) {
           {family?.relatives[0]?.map((relative) => (
             <div key={relative.member.id} className='sibling-container'>
               <div className='sibling-parents'>
-                <div className="sibling-member">
+                <div className='sibling-member'>
                   <Member member={relative.member} />
                 </div>
-                <div className="sibling-spouse">
-                  {relative.spouses.map((spouse) => (
-                    <Member member={spouse} key={spouse.id} />
-                  ))}
-                </div>
+
+                {relative.spouse && (
+                  <div className='sibling-spouse'>
+                    {relative.spouse.map((spouse) => (
+                      <Member member={spouse} key={spouse.id} />
+                    ))}
+                  </div>
+                )}
               </div>
 
-              <div className='sibling-children'>
-                {relative.children.map((child) => (
-                  <Member member={child} key={child.id} />
-                ))}
-              </div>
+              {relative.children && (
+                <div className='sibling-children'>
+                  {relative.children.map((child) => (
+                    <Member member={child} key={child.id} />
+                  ))}
+                </div>
+              )}
             </div>
           ))}
         </div>
 
-        <div className="parents">
-          <div className='parent-a'>
-            <Member member={family.parents[0]} />
-          </div>
-          <div className='parent-b'>
-            <Member member={family.parents[1]} />
-          </div>
+        <div className='parents'>
+          <Member member={family.parents[0]} />
+          <Member member={family.parents[1]} />
         </div>
 
         <div className='sibling-b'>
           {family?.relatives[1]?.map((relative) => (
             <div key={relative.member.id} className='sibling-container'>
-              <div className="sibling-parents">
+              <div className='sibling-parents'>
                 <div className='sibling-member'>
                   <Member member={relative.member} />
                 </div>
-                <div className='sibling-spouse'>
-                  {relative.spouse.map((spouse) => (
-                    <Member member={spouse} key={spouse.id} />
-                  ))}
-                </div>
+
+                {relative.spouse && (
+                  <div className='sibling-spouse'>
+                    {relative.spouse.map((spouse) => (
+                      <Member member={spouse} key={spouse.id} />
+                    ))}
+                  </div>
+                )}
               </div>
 
-              {relative.children.map((child) => (
-                <Member member={child} key={child.id} />
-              ))}
+              <div className='sibling-children'>
+                {relative.children?.map((child) => (
+                  <Member member={child} key={child.id} />
+                ))}
+              </div>
             </div>
           ))}
         </div>
