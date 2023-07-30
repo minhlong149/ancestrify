@@ -1,20 +1,14 @@
-# long.nguyendaominh
+# Family Tree JSON
 
-Nguyen Dao Minh Long - Backend Intern
+A small Family Tree Management System with the focus on the rendering and implementation of the family tree in JSON format. *This is part of the Technical Test for Backend Frontend-oriented Developer Intern.*
 
-## Getting Started
+## Features
 
-Install all the dependencies, build the project and run the server. *I'm using `yarn` as my package manager, but `npm` should work just fine.*
+- [x] Allow to copy/paste a family JSON files and see display of Family Tree in real time.
+- [x] Propose the "front Family Tree editing" on the diagram display directly.
+- [ ] Showing only the Family Tree for user that has birthed in a specific year.
 
-```bash
-yarn
-yarn build
-yarn preview
-```
-
-> You can also use `yarn dev` to run the server in development mode.
-
-## About the JSON Structure
+## JSON Data Structure
 
 The family tree data is stored as an `array` of all members in the family. For each member, we store the `family id` that they are `parent` and `child` of.
 
@@ -31,4 +25,6 @@ The family tree data is stored as an `array` of all members in the family. For e
 | Nephew         |                  | F2              |
 | Grandparent    | F0               |                 |
 
-> The family tree data implementation is located in `src/services/familyTree.js`.
+## References
+
+- Bharath Raja - [Building My Family Tree](https://bigomega.medium.com/building-my-family-tree-ef0be1fba775)
